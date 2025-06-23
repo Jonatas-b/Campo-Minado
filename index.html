@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Campo Minado</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Campo Minado</h1>
+  <div id="dificuldades" style="margin-bottom: 16px;">
+    <button data-size="8" data-mines="10">🟢 Fácil</button>
+    <button data-size="12" data-mines="20">🟡 Médio</button>
+    <button data-size="16" data-mines="40">🔴 Difícil</button>
+    <button data-size="20" data-mines="99">☠️ Desumano</button>
+    <div style="font-size: 0.95em; color: #665; margin-top: 4px;">
+      <strong>Dica:</strong> Use as teclas <b>1</b>, <b>2</b>, <b>3</b> ou <b>4</b> para trocar de dificuldade rapidamente.
+    </div>
+  </div>
+  <div id="game"></div>
+  <p id="status"></p>
+  <p id="bandeiras-restantes"></p>
+  <div id="ferramentas">
+    <button id="btn-pa" class="selecionada">⛏️ Picareta</button>
+    <button id="btn-bandeira">🚩 Bandeira</button>
+  </div>
+  <div id="botoes-campo-minado">
+    <button id="btn-reiniciar">Reiniciar</button>
+  </div>
+  <div style="font-size: 0.95em; color: #665; margin-top: 4px;">
+      <strong>Dica:</strong> Use as teclas <b>Q</b>, <b>W</b>, para trocar de ferramenta rapidamente, e  <b>E</b> para reiniciar o jogo.
+    </div> <br>
+
+  <footer>
+  <span>&copy; 2025 Jônatas Emanuel Batista</span><br>
+    <div style="margin-top:10px;font-size:0.97em;">
+  Dúvidas ou sugestões? <a href="mailto:jonatasemanuelbatista@gmail.com">Fale comigo</a>
+</div>
+</footer>
+  <script src="script.js"></script>
+</body>
+</html>

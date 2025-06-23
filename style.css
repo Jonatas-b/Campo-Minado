@@ -1,0 +1,314 @@
+body {
+  background: #222;
+  color: #fafafa;
+  font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+  text-align: center;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  margin-top: 32px;
+  letter-spacing: 2px;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 2px 8px #0008;
+}
+
+#dificuldades {
+  margin-bottom: 16px;
+}
+
+#dificuldades button {
+  background: #333;
+  color: #fafafa;
+  border: 2px solid #444;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  padding: 8px 18px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition: background 0.15s, border 0.15s, color 0.15s;
+  font-weight: 500;
+  box-shadow: 0 2px 8px #0003;
+}
+#dificuldades button:hover, #dificuldades button:focus {
+  background: #444;
+  border-color: #1976d2;
+  color: #fff;
+}
+
+#dificuldades div {
+  font-size: 0.95em;
+  color: #bbb;
+  margin-top: 4px;
+}
+
+#game {
+  display: grid;
+  gap: 2px;
+  justify-content: center;
+  margin: 32px auto 0 auto;
+  background: #111;
+  padding: 14px;
+  border-radius: 12px;
+  /* Remove borda fixa do #game */
+  border: none;
+  /* Remove sombra fixa do #game */
+  box-shadow: none;
+}
+
+/* FÁCIL: Verde neon */
+body.neon-facil #game {
+  border: 2.5px solid #39ff14;
+  box-shadow: 0 0 8px #39ff14, 0 0 2px #39ff14;
+}
+body.neon-facil .cell {
+  box-shadow: 0 0 6px 1px #39ff14cc, 0 0 2px 0 #39ff1444 inset;
+}
+body.neon-facil .cell.revealed {
+  box-shadow: 0 0 4px 1px #39ff1422, 0 0 1px 0 #39ff1411 inset;
+}
+body.neon-facil #dificuldades button.selecionada {
+  border-color: #39ff14;
+  color: #39ff14;
+  box-shadow: 0 0 8px #39ff14, 0 0 2px #39ff14;
+}
+
+/* MÉDIO: Amarelo neon */
+body.neon-medio #game {
+  border: 2.5px solid #ffe600;
+  box-shadow: 0 0 8px #ffe600, 0 0 2px #ffe600;
+}
+body.neon-medio .cell {
+  box-shadow: 0 0 6px 1px #ffe600cc, 0 0 2px 0 #ffe60044 inset;
+}
+body.neon-medio .cell.revealed {
+  box-shadow: 0 0 4px 1px #ffe60022, 0 0 1px 0 #ffe60011 inset;
+}
+body.neon-medio #dificuldades button.selecionada {
+  border-color: #ffe600;
+  color: #ffe600;
+  box-shadow: 0 0 8px #ffe600, 0 0 2px #ffe600;
+}
+
+/* DIFÍCIL: Vermelho neon */
+body.neon-dificil #game {
+  border: 2.5px solid #ff1744;
+  box-shadow: 0 0 8px #ff1744, 0 0 2px #ff1744;
+}
+body.neon-dificil .cell {
+  box-shadow: 0 0 6px 1px #ff1744cc, 0 0 2px 0 #ff174444 inset;
+}
+body.neon-dificil .cell.revealed {
+  box-shadow: 0 0 4px 1px #ff174422, 0 0 1px 0 #ff174411 inset;
+}
+body.neon-dificil #dificuldades button.selecionada {
+  border-color: #ff1744;
+  color: #ff1744;
+  box-shadow: 0 0 8px #ff1744, 0 0 2px #ff1744;
+}
+
+/* DESUMANO: Roxo neon */
+body.neon-desumano #game {
+  border: 2.5px solid #b388ff;
+  box-shadow: 0 0 8px #b388ff, 0 0 2px #b388ff;
+}
+body.neon-desumano .cell {
+  box-shadow: 0 0 6px 1px #b388ffcc, 0 0 2px 0 #b388ff44 inset;
+}
+body.neon-desumano .cell.revealed {
+  box-shadow: 0 0 4px 1px #b388ff22, 0 0 1px 0 #b388ff11 inset;
+}
+body.neon-desumano #dificuldades button.selecionada {
+  border-color: #b388ff;
+  color: #b388ff;
+  box-shadow: 0 0 8px #b388ff, 0 0 2px #b388ff;
+}
+
+.cell {
+  width: 32px;
+  height: 32px;
+  background: #222;
+  border: none;
+  outline: none;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: #fafafa;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, color 0.15s, box-shadow 0.3s;
+  /* Neon suave entre as células */
+  box-shadow:
+    0 0 6px 1px #39ff14cc,
+    0 0 2px 0 #39ff1444 inset;
+}
+
+.cell.revealed {
+  background: #fafafa;
+  color: #212121;
+  cursor: default;
+  box-shadow:
+    0 0 4px 1px #39ff1422,
+    0 0 1px 0 #39ff1411 inset;
+}
+
+.cell.mine {
+  background: #b71c1c;
+  color: #fff;
+}
+
+.cell.flagged {
+  color: #f57c00;
+}
+
+.cell[data-number="1"] { color: #1976d2; }
+.cell[data-number="2"] { color: #388e3c; }
+.cell[data-number="3"] { color: #d32f2f; }
+.cell[data-number="4"] { color: #512da8; }
+
+#ferramentas {
+  margin: 24px 0 16px 0;
+  text-align: center;
+}
+
+#ferramentas button {
+  font-size: 1.3rem;
+  padding: 8px 22px;
+  margin: 0 8px;
+  border-radius: 6px;
+  border: 2px solid #444;
+  background: #333;
+  color: #fafafa;
+  cursor: pointer;
+  transition: background 0.15s, border 0.15s;
+  font-weight: 500;
+  box-shadow: 0 2px 8px #0003;
+}
+#ferramentas button:hover, #ferramentas button:focus {
+  background: #444;
+  border-color: #1976d2;
+}
+#ferramentas .selecionada {
+  border: 2.5px solid #39ff14;
+  background: #181818;
+  color: #39ff14;
+  box-shadow: 0 0 8px #39ff14, 0 0 2px #39ff14;
+}
+
+/* FERRAMENTAS SELECIONADA E BANDEIRAS RESTANTES - FÁCIL */
+body.neon-facil #ferramentas .selecionada {
+  border-color: #39ff14;
+  color: #39ff14;
+  box-shadow: 0 0 8px #39ff14, 0 0 2px #39ff14;
+}
+body.neon-facil #bandeiras-restantes {
+  color: #39ff14;
+}
+
+/* MÉDIO */
+body.neon-medio #ferramentas .selecionada {
+  border-color: #ffe600;
+  color: #ffe600;
+  box-shadow: 0 0 8px #ffe600, 0 0 2px #ffe600;
+}
+body.neon-medio #bandeiras-restantes {
+  color: #ffe600;
+}
+
+/* DIFÍCIL */
+body.neon-dificil #ferramentas .selecionada {
+  border-color: #ff1744;
+  color: #ff1744;
+  box-shadow: 0 0 8px #ff1744, 0 0 2px #ff1744;
+}
+body.neon-dificil #bandeiras-restantes {
+  color: #ff1744;
+}
+
+/* DESUMANO */
+body.neon-desumano #ferramentas .selecionada {
+  border-color: #b388ff;
+  color: #b388ff;
+  box-shadow: 0 0 8px #b388ff, 0 0 2px #b388ff;
+}
+body.neon-desumano #bandeiras-restantes {
+  color: #b388ff;
+}
+
+#botoes-campo-minado {
+  margin: 16px 0 32px 0;
+}
+#botoes-campo-minado button {
+  font-size: 1.1rem;
+  padding: 8px 24px;
+  border-radius: 6px;
+  border: 2px solid #444;
+  background: #333;
+  color: #fafafa;
+  cursor: pointer;
+  transition: background 0.15s, border 0.15s;
+  font-weight: 500;
+  box-shadow: 0 2px 8px #0003;
+}
+#botoes-campo-minado button:hover, #botoes-campo-minado button:focus {
+  background: #444;
+  border-color: #1976d2;
+}
+
+#status {
+  font-size: 1.2rem;
+  margin: 16px 0 8px 0;
+  min-height: 1.5em;
+  color: #fff;
+  text-shadow: 0 1px 4px #0008;
+}
+
+footer {
+  margin-top: auto;
+  background: #181818;
+  color: #bbb;
+  padding: 18px 0 12px 0;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  border-top: 2px solid #333;
+}
+footer a {
+  color: #1976d2;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.15s;
+}
+footer a:hover {
+  color: #42a5f5;
+  text-decoration: underline;
+}
+
+#dificuldades button.selecionada {
+  border: 2.5px solid #39ff14;
+  background: #181818;
+  color: #39ff14;
+  box-shadow: 0 0 8px #39ff14, 0 0 2px #39ff14;
+}
+body.neon-medio #dificuldades button.selecionada {
+  border-color: #ffe600;
+  color: #ffe600;
+  box-shadow: 0 0 8px #ffe600, 0 0 2px #ffe600;
+}
+body.neon-dificil #dificuldades button.selecionada {
+  border-color: #ff1744;
+  color: #ff1744;
+  box-shadow: 0 0 8px #ff1744, 0 0 2px #ff1744;
+}
+body.neon-desumano #dificuldades button.selecionada {
+  border-color: #b388ff;
+  color: #b388ff;
+  box-shadow: 0 0 8px #b388ff, 0 0 2px #b388ff;
+}
